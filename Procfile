@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.investscape.navgetter.NavgetterApplication
+web: java -Dserver.port=$PORT -jar  navgetter/target/navgetter-0.0.1-SNAPSHOT.jar
