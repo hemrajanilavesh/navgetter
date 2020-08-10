@@ -1,6 +1,8 @@
 package com.investscape.navgetter;
 
 import com.investscape.navgetter.model.Scheme;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,9 @@ import java.util.ArrayList;
 @RestController
 public class RequestController {
 
+    @Autowired
+    private Environment env;
+
     private Long lastUpdated;
 
     private ArrayList<String> mfList;
@@ -23,7 +28,8 @@ public class RequestController {
     @GetMapping(path = "/getNAV/{schemeCode}")
     public Scheme getScheme(@PathVariable String schemeCode) throws IOException {
         ArrayList<String> lines = new ArrayList<>();
-        if (lastUpdated != null && System.currentTimeMillis() - lastUpdated < 120000){
+        if (lastUpdated != null
+                && System.currentTimeMillis() - lastUpdated < Long.parseLong(env.getProperty("forceUpdateTimeout"))) {
             lines = mfList;
         }
         else{
