@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.investscape.navgetter
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.investscape.navgetter.NavgetterApplication
