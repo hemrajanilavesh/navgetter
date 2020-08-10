@@ -11,7 +11,7 @@
 	<groupId>com.investscape</groupId>
 	<artifactId>navgetter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>navgetter</name>
 	<description>Demo project for getting NAV from AMFI website</description>
 

@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar  navgetter/target/navgetter-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -jar target/navgetter-0.0.1-SNAPSHOT.war
