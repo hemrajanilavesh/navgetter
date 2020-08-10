@@ -1,4 +1,4 @@
-package com.investscape.navgetter;
+package com.investscape.navgetter.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ public class SpringFoxConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.investscape.navgetter.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

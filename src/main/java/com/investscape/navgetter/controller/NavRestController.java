@@ -1,4 +1,4 @@
-package com.investscape.navgetter;
+package com.investscape.navgetter.controller;
 
 import com.investscape.navgetter.model.Scheme;
 import org.springframework.beans.factory.annotation.Autowired;
