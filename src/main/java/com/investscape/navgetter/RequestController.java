@@ -14,9 +14,11 @@ import java.util.ArrayList;
 @RestController
 public class RequestController {
 
-    Long lastUpdated;
+    private Long lastUpdated;
 
-    ArrayList<String> mfList;
+    private ArrayList<String> mfList;
+
+    private static final String AMFI_WEBSITE_LINK = "https://www.amfiindia.com/spages/NAVAll.txt?t=11012017122537";
 
     @GetMapping(path = "/getNAV/{schemeCode}")
     public Scheme getScheme(@PathVariable String schemeCode) throws IOException {
@@ -25,7 +27,7 @@ public class RequestController {
             lines = mfList;
         }
         else{
-            URL url = new URL("https://www.amfiindia.com/spages/NAVAll.txt?t=11012017122537");
+            URL url = new URL(AMFI_WEBSITE_LINK);
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
             String line;
             while ((line = in.readLine()) != null) {
