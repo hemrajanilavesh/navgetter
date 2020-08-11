@@ -23,7 +23,7 @@ public class NavRestController {
 
     private ArrayList<String> mfList;
 
-    private static final String AMFI_WEBSITE_LINK = "https://www.amfiindia.com/spages/NAVAll.txt?t=11012017122537";
+    private static final String AMFI_WEBSITE_LINK = "https://www.amfiindia.com/spages/NAVAll.txt";
 
     @GetMapping(path = "/getNAV/{schemeCode}")
     public Scheme getScheme(@PathVariable String schemeCode) throws IOException {
