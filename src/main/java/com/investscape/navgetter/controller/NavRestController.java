@@ -44,9 +44,9 @@ public class NavRestController {
             in.close();
         }
 
-        for(String mf: lines) {
-            if(mf.startsWith(schemeCode)){
-                String[] elements = mf.split(";");
+        for (String mf: lines) {
+            String[] elements = mf.split(";");
+            if (elements.length > 0 && elements[0].equals(schemeCode)) {
                 return new Scheme(elements[0], elements[3], elements[4], elements[5]);
             }
         }
