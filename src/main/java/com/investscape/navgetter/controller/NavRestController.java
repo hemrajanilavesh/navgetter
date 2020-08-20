@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
@@ -16,23 +17,21 @@ import java.util.ArrayList;
 
 @RestController
 public class NavRestController {
+    private static final String AMFI_WEBSITE_LINK = "https://www.amfiindia.com/spages/NAVAll.txt";
     @Autowired
     private Environment env;
-
     private Long lastUpdated;
-
     private ArrayList<String> mfList;
-
-    private static final String AMFI_WEBSITE_LINK = "https://www.amfiindia.com/spages/NAVAll.txt";
 
     @GetMapping(path = "/getNAV/{schemeCode}")
     @ApiOperation(
             value = "returns NAV",
             notes = "given scheme code of a MF, this API returns the latest NAV present on the AMFI website. For ex: .../getNav/118989"
     )
-    public Scheme getScheme(@PathVariable String schemeCode) throws IOException {
+    public Scheme getScheme(@PathVariable String schemeCode, @RequestParam(value = "forceUpdate", required = false,
+            defaultValue = "false") boolean forceUpdate) throws IOException {
         ArrayList<String> lines = new ArrayList<>();
-        if (lastUpdated != null
+        if (!forceUpdate && lastUpdated != null
                 && System.currentTimeMillis() - lastUpdated < Long.parseLong(env.getProperty("forceUpdateTimeout"))) {
             lines = mfList;
         } else {
