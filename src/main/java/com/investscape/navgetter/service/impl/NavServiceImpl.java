@@ -3,6 +3,8 @@ package com.investscape.navgetter.service.impl;
 import com.investscape.navgetter.model.Scheme;
 import com.investscape.navgetter.service.NavService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -22,6 +24,7 @@ public class NavServiceImpl implements NavService {
 
     private Map<String, Scheme> findMap = new HashMap<>();
 
+    @CacheEvict(value = "fundsCache", allEntries = true)
     @Override
     public boolean loadNavForAllFunds() throws IOException {
         long start = System.currentTimeMillis();
@@ -43,12 +46,14 @@ public class NavServiceImpl implements NavService {
         log.info("All Funds loaded in {} milliseconds.", (System.currentTimeMillis() - start));
         return true;
     }
-
+    
+    @Cacheable(value = "fundsCache", key = "#schemeCode", condition = "!#forceReload")
     @Override
     public Scheme getNav(boolean forceReload, String schemeCode) throws IOException {
         if (forceReload) {
             loadNavForAllFunds();
         }
+        log.info("Looking for fund with Scheme Code: {}", schemeCode);
         return findMap.getOrDefault(schemeCode, new Scheme(schemeCode, "Not Found", "Not Found", "Not Found"));
     }
 }
