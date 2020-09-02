@@ -36,14 +36,14 @@ public class NavRestController {
             lines = mfList;
         } else {
             URL url = new URL(AMFI_WEBSITE_LINK);
-            try (BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()))) {
-                String line;
-                while ((line = in.readLine()) != null) {
-                    lines.add(line);
-                }
-                mfList = lines;
-                lastUpdated = System.currentTimeMillis();
+            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                lines.add(line);
             }
+            mfList = lines;
+            lastUpdated = System.currentTimeMillis();
+            in.close();
         }
 
         for (String mf : lines) {
