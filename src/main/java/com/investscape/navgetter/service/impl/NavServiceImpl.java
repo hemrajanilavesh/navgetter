@@ -21,7 +21,6 @@ import java.util.Map;
 public class NavServiceImpl implements NavService {
 
     private static final String AMFI_WEBSITE_LINK = "https://www.amfiindia.com/spages/NAVAll.txt";
-    public static final String SEPARATOR = ";";
 
     private Map<String, Scheme> findMap = new HashMap<>();
 
@@ -39,7 +38,7 @@ public class NavServiceImpl implements NavService {
             }
         }
         lines.stream()
-                .map(line -> line.split(SEPARATOR))
+                .map(line -> line.split(";"))
                 .filter(elements -> elements.length >= 5)
                 .forEach(elements -> {
                     findMap.put(elements[0], new Scheme(elements[0], elements[3], elements[4], elements[5]));
