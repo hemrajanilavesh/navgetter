@@ -1,7 +1,8 @@
-# NAV GETTER
-This springboot app will generate the latest Net Asset Value of any mutual fund listed on the AMFI website:
+# navGetter 
+[![<terriblebassist>](https://circleci.com/gh/terriblebassist/navgetter/tree/master.svg?style=shield)](<https://circleci.com/gh/terriblebassist/navgetter/tree/master>) [![codecov](https://codecov.io/gh/terriblebassist/navgetter/branch/master/graph/badge.svg)](https://codecov.io/gh/terriblebassist/navgetter)
+
+This springboot app will generate the Net Asset Value(NAV) of any mutual fund listed on the AMFI website:
 ```https://www.amfiindia.com/spages/NAVAll.txt```
-(Pass scheme code as path Variable. Ex - ```.../getNav/118989``` )
   
 ### 1. API ###
 All calls to API must be started with `.../getNav`

@@ -7,4 +7,5 @@ import java.io.IOException;
 public interface NavService {
     boolean loadNavForAllFunds() throws IOException;
     Scheme getNav(boolean forceReload, String schemeCode) throws IOException;
+    Scheme getNavOnDate(String schemeCode, String date);
 }

@@ -1,7 +1,13 @@
-version: 2.1
-orbs:
-  maven: circleci/maven@1.0.2
-workflows:
-  maven_test:
-    jobs:
-      - maven/test
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+    steps:
+      - checkout
+      - run: mvn clean install
+      - store_test_results:
+          path: target/surefire-reports
+      - run:
+          name: Send to CodeCov
+          command: bash <(curl -s https://codecov.io/bash)
