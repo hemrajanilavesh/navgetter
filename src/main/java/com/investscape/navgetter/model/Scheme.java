@@ -21,7 +21,7 @@ public class Scheme implements Serializable {
     @ApiModelProperty(value = "Uniquely identifiable code of the Mutual Fund Scheme.", example = "119551")
     String schemeCode;
 
-    @ApiModelProperty(value = "Name of the Mutual Fund Scheme.", example = "Aditya Birla Sun Life Banking & PSU Debt Fund  - Direct Plan-Dividend")
+    @ApiModelProperty(value = "Name of the Mutual Fund Scheme.", example = "Aditya Birla Sun Life Banking & PSU Debt Fund - Direct Plan-Dividend")
     String schemeName;
 
     @ApiModelProperty(value = "The Net Asset Value of the Mutual Fund Scheme, reported on the corresponding date to AMFI.", example = "156.2123")
