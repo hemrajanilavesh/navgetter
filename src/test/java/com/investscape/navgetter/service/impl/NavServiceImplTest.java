@@ -1,7 +1,6 @@
 package com.investscape.navgetter.service.impl;
 
 import com.google.common.io.CharStreams;
-import com.investscape.navgetter.service.impl.NavServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;

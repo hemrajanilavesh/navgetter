@@ -6,17 +6,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.Serializable;
 
 @ApiModel(value = "Scheme", description = "Details of Mutual Fund Scheme including the Net Asset Value (NAV)")
-@Slf4j
 @Setter
 @Getter
 @ToString
 @AllArgsConstructor
 public class Scheme implements Serializable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 585620707939795736L;
 
     @ApiModelProperty(value = "Uniquely identifiable code of the Mutual Fund Scheme.", example = "119551")
     String schemeCode;
