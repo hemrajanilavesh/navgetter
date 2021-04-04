@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 
 import java.io.IOException;
 
@@ -19,17 +20,20 @@ public class NavRestController {
     private NavService navService;
 
     @GetMapping(path = "/getNAV/{schemeCode}")
-    @Operation(summary = "Fetch latest NAV. Sample schemeCode = 119551")
-    public Scheme getScheme(@PathVariable String schemeCode,
-                            @RequestParam(value = "forceUpdate", required = false, defaultValue = "false") boolean forceUpdate) throws IOException {
+    @Operation(summary = "Fetch the latest NAV from AMFI website.")
+    public Scheme getScheme(
+            @Parameter(description = "scheme Code for mutual fund", example = "120503") @PathVariable(value = "schemeCode") String schemeCode,
+            @Parameter(description = "force update of NAV?", example = "false") @RequestParam(value = "forceUpdate", required = false, defaultValue = "false") boolean forceUpdate)
+            throws IOException {
 
         return navService.getNav(forceUpdate, schemeCode);
     }
 
     @GetMapping(path = "/getNav/{schemeCode}/{date}")
-    @Operation(summary = "Fetch NAV on date DD-MM-YYYY. Sample schemeCode = 119551, Sample date = 20-01-2020")
-    public Scheme getSchemeNavOnDate(@PathVariable String schemeCode,
-                                    @PathVariable String date) {
+    @Operation(summary = "Fetch NAV on date DD-MM-YYYY (or the last working day before DD-MM-YYYY).")
+    public Scheme getSchemeNavOnDate(
+            @Parameter(description = "scheme Code for mutual fund", example = "120503") @PathVariable String schemeCode,
+            @Parameter(description = "date", example = "20-01-2020") @PathVariable String date) {
         return navService.getNavOnDate(schemeCode, date);
     }
 }
