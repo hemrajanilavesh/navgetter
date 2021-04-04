@@ -46,7 +46,7 @@ public class NavServiceTest {
                 .andExpect(jsonPath("$.schemeCode").exists())
                 .andExpect(jsonPath("$.schemeCode").value(testSchemeCode))
                 .andExpect(jsonPath("$.schemeName").exists())
-                .andExpect(jsonPath("$.schemeName").value("Aditya Birla Sun Life Banking & PSU Debt Fund  - Direct Plan-Dividend"))
+                .andExpect(jsonPath("$.schemeName").value("Aditya Birla Sun Life Banking & PSU Debt Fund  - DIRECT - IDCW"))
                 .andExpect(jsonPath("$.nav").exists())
                 .andExpect(jsonPath("$.date").exists());
 
